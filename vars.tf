@@ -4,12 +4,12 @@ variable "MY_CURRENT_IP" {
 }
 
 variable "PROJECT" {
-  type = string
+  type        = string
   description = "An identification of the project."
-  default = "myk8s"
+  default     = "myk8s"
 }
 
 variable "OWNER" {
-  type = string
+  type        = string
   description = "The responsible for the instance."
 }
