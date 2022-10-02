@@ -19,7 +19,7 @@ resource "aws_security_group" "sg-k8s" {
     from_port   = 22
     to_port     = 22
     protocol    = "TCP"
-    cidr_blocks = var.IP_MY_CURRENT_WIFI
+    cidr_blocks = ["${var.MY_CURRENT_IP}/32"] # only me
   }
 
   egress {
