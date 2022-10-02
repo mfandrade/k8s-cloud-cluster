@@ -7,7 +7,7 @@
 .DEFAULT_GOAL := provision
 
 provision: hosts.ini
-	ansible-playbook --inventory hosts.ini --user admin --become 0-prepare.yaml
+	ansible-playbook --inventory hosts.ini --user admin --become [0-9]-*.yaml
 
 test: hosts.ini
 	ansible all --list-hosts --inventory hosts.ini

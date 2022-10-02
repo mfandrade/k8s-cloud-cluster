@@ -16,9 +16,20 @@
     - name: Installing kube tools
       ansible.builtin.apt:
         update_cache: yes
-        pkg:
-        - kubeadm
-        - kubelet
-        - kubectl 
+        pkg: ["kubeadm", "kubelet", "kubectl"]
 
+    - name: Avoiding unadverted upgrade of kubeadm
+      ansible.builtin.dpkg_selections:
+        name: kubeadm
+        selection: hold
+
+    - name: Avoiding unadverted upgrade of kubelet
+      ansible.builtin.dpkg_selections:
+        name: kubelet
+        selection: hold
+
+    - name: Avoiding unadverted upgrade of kubectl
+      ansible.builtin.dpkg_selections:
+        name: kubectl
+        selection: hold
 
