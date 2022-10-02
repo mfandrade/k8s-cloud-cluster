@@ -50,8 +50,8 @@ resource "aws_instance" "k8s-node" {
   count           = 2
   instance_type   = "t2.medium"
   ami             = data.aws_ami.ubuntu.id
+  key_name        = aws_key_pair.mykey.key_name
   security_groups = ["${aws_security_group.k8s-sg.name}"]
-  key_name        = "mykey"
   tags = {
     Project = var.PROJECT
     Owner   = var.OWNER
@@ -63,8 +63,8 @@ resource "aws_instance" "k8s-cplane" {
   count           = 1
   instance_type   = "t2.medium"
   ami             = data.aws_ami.ubuntu.id
+  key_name        = aws_key_pair.mykey.key_name
   security_groups = ["${aws_security_group.k8s-sg.name}"]
-  key_name        = "mykey"
   tags = {
     Project = var.PROJECT
     Owner   = var.OWNER
