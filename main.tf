@@ -47,7 +47,7 @@ resource "aws_security_group" "k8s-sg" {
 }
 
 resource "aws_instance" "k8s-node" {
-  count           = 2
+  count           = 9
   instance_type   = "t2.medium"
   ami             = data.aws_ami.ubuntu.id
   key_name        = aws_key_pair.mykey.key_name
