@@ -38,7 +38,7 @@ resource "aws_security_group" "k8s-sg" {
 }
 
 resource "aws_instance" "k8s-node" {
-  count           = 9
+  count           = var.NUM_OF_NODES
   ami             = var.AMI_IMAGE
   instance_type   = var.INSTANCE_TYPE_NODE
   key_name        = aws_key_pair.mykey.key_name

@@ -2,5 +2,14 @@ MY_CURRENT_IP = "SET_YOUR_PUBLIC_IP_HERE"
 PROJECT       = "DEFINE_AN_ID_FOR_YOUR_PROJECT"
 OWNER         = "WRITE_YOUR_NAME_HERE"
 
-INSTANCE_TYPE_NODE   = "t2.medium"
-INSTANCE_TYPE_CPLANE = "t2.medium"
+# Uncomment the entry for the AMI you want
+AMI_IMAGE     = "ami-09a41e26df464c548"   # Debian 11 Bullseye
+#AMI_IMAGE     = "ami-08c40ec9ead489470"   # Ubuntu 22.04 Jammy
+#AMI_IMAGE     = "ami-0149b2da6ceec4bb0"   # Ubuntu 20.04 Focal
+
+# How many nodes do you want?
+NUM_OF_NODES = 3
+
+# Uncomment if you want to change nodes or control plane type
+#INSTANCE_TYPE_NODE   = "t2.medium"
+#INSTANCE_TYPE_CPLANE = "t2.medium"

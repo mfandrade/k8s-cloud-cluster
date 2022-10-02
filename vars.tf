@@ -16,6 +16,12 @@ variable "AMI_IMAGE" {
   default  = "ami-09a41e26df464c548"
 }
 
+variable "NUM_OF_NODES" {
+  type = number
+  description = "How many nodes do you want."
+  default = 2
+}
+
 variable "MY_CURRENT_IP" {
   type        = string
   description = "My public IP (https://www.google.com/search?q=what+is+my+ip)."
