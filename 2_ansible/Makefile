@@ -8,3 +8,6 @@
 
 provision: hosts.ini
 	ansible-playbook --inventory hosts.ini --user admin --become 0-prepare.yaml
+
+test: hosts.ini
+	ansible all --list-hosts --inventory hosts.ini
