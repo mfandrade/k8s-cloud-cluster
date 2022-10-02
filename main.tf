@@ -51,14 +51,24 @@ resource "aws_instance" "k8s-node" {
   instance_type   = "t2.medium"
   ami             = data.aws_ami.ubuntu.id
   security_groups = ["${aws_security_group.k8s-sg.name}"]
-  tags            = var.TAGS_INSTANCES
   key_name        = "mykey"
+  tags = {
+    Project = var.PROJECT
+    Owner   = var.OWNER
+    Type    = "node"
+    Name    = "node${count.index}"
+  }
 }
-resource "aws_instance" "k8s-master" {
+resource "aws_instance" "k8s-cplane" {
   count           = 1
   instance_type   = "t2.medium"
   ami             = data.aws_ami.ubuntu.id
   security_groups = ["${aws_security_group.k8s-sg.name}"]
-  tags            = var.TAGS_INSTANCES
   key_name        = "mykey"
+  tags = {
+    Project = var.PROJECT
+    Owner   = var.OWNER
+    Type    = "cplane"
+    Name    = "cplane${count.index}"
+  }
 }

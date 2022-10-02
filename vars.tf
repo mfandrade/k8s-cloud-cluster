@@ -3,12 +3,13 @@ variable "MY_CURRENT_IP" {
   description = "My public IP (https://www.google.com/search?q=what+is+my+ip)."
 }
 
-variable "TAGS_INSTANCES" {
-  type        = map(string)
-  description = "Default tags for instances."
-  default = {
-    Name    = "k8s-instance"
-    Owner   = "Marcelo F Andrade"
-    Project = "MyK8SCluster"
-  }
+variable "PROJECT" {
+  type = string
+  description = "An identification of the project."
+  default = "myk8s"
+}
+
+variable "OWNER" {
+  type = string
+  description = "The responsible for the instance."
 }
