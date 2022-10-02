@@ -4,7 +4,14 @@
 # can do whatever you want with this stuff. If we meet some day, and you think
 # this stuff is worth it, you can buy me a beer in return.   Marcelo F Andrade
 # =============================================================================
+.DEFAULT_GOAL := plan
 
-cluster: main.tf vars.tf terraform.tfvars .terraform/
-	terraform apply -auto-approve
+init: main.tf vars.tf terraform.tfvars
+	terraform init
+
+plan: .terraform/
+	terraform plan -out terraform.plan
+
+cluster: plan
+	terraform apply terraform.plan
 
