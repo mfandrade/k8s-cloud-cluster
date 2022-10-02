@@ -43,9 +43,6 @@ resource "aws_instance" "k8s-node" {
   instance_type   = var.INSTANCE_TYPE_NODE
   key_name        = aws_key_pair.mykey.key_name
   security_groups = ["${aws_security_group.k8s-sg.name}"]
-  private_dns_name_options {
-    hostname_type = "resource-name"
-  }
   tags = {
     Project = var.PROJECT
     Owner   = var.OWNER
@@ -58,9 +55,6 @@ resource "aws_instance" "k8s-cplane" {
   ami             = var.AMI_IMAGE
   instance_type   = var.INSTANCE_TYPE_CPLANE
   key_name        = aws_key_pair.mykey.key_name
-  private_dns_name_options {
-    hostname_type = "resource-name"
-  }
   security_groups = ["${aws_security_group.k8s-sg.name}"]
   tags = {
     Project = var.PROJECT
