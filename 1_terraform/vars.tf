@@ -11,15 +11,15 @@ variable "INSTANCE_TYPE_CPLANE" {
 }
 
 variable "AMI_IMAGE" {
-  type = string
+  type        = string
   description = "AMI ID of your desired image."
-  default  = "ami-09a41e26df464c548"
+  default     = "ami-09a41e26df464c548"  # Debian 11 Bullseye
 }
 
 variable "NUM_OF_NODES" {
-  type = number
+  type        = number
   description = "How many nodes do you want."
-  default = 2
+  default     = 2
 }
 
 variable "MY_CURRENT_IP" {
