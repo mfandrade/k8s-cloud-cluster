@@ -7,7 +7,7 @@ output "inventory" {
 
 
 data "template_file" "inventory" {
-  template = file("${path.module}/templates/inventory.tpl")
+  template = file("${path.module}/inventory.ini.tpl")
 
   vars = {
     connection_strings_master = join("\n", formatlist("%s ansible_host=%s", aws_instance.k8s-master.*.private_dns, aws_instance.k8s-master.*.private_ip))

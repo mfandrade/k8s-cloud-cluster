@@ -1,27 +1,13 @@
 [all]
-${connection_strings_master}
-${connection_strings_node}
-${connection_strings_etcd}
-${public_ip_address_bastion}
+${connection_strings_cplanes}
+${connection_strings_nodes}
 
-[bastion]
-${public_ip_address_bastion}
-
-[kube_control_plane]
+[cplanes]
 ${list_master}
 
-[kube_node]
+[nodes]
 ${list_node}
 
-[etcd]
-${list_etcd}
-
-[calico_rr]
-
-[k8s_cluster:children]
-kube_node
-kube_control_plane
-calico_rr
-
-[k8s_cluster:vars]
-${nlb_api_fqdn}
+[all:children]
+nodes
+cplanes
