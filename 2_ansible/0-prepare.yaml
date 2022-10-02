@@ -1,0 +1,10 @@
+---
+- name: Meu primeiro playbook
+  hosts: all
+  tasks:
+    - name: Checa o hostname
+      ansible.builtin.shell:
+        cmd: hostname
+    - name: Diz ou alô aí pa nóis
+      ansible.builtin.debug:
+        msg: Alo, mundo!
