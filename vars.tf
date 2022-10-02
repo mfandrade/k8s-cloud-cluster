@@ -1,3 +1,15 @@
+variable "INSTANCE_TYPE_NODE" {
+  type        = string
+  description = "The instance type for a node."
+  default     = "t2.micro"
+}
+
+variable "INSTANCE_TYPE_CPLANE" {
+  type        = string
+  description = "The instance type for a controlplane."
+  default     = "t2.micro"
+}
+
 variable "MY_CURRENT_IP" {
   type        = string
   description = "My public IP (https://www.google.com/search?q=what+is+my+ip)."

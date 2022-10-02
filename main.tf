@@ -48,7 +48,7 @@ resource "aws_security_group" "k8s-sg" {
 
 resource "aws_instance" "k8s-node" {
   count           = 9
-  instance_type   = "t2.medium"
+  instance_type   = var.INSTANCE_TYPE_NODE
   ami             = data.aws_ami.ubuntu.id
   key_name        = aws_key_pair.mykey.key_name
   security_groups = ["${aws_security_group.k8s-sg.name}"]
@@ -61,7 +61,7 @@ resource "aws_instance" "k8s-node" {
 }
 resource "aws_instance" "k8s-cplane" {
   count           = 1
-  instance_type   = "t2.medium"
+  instance_type   = var.INSTANCE_TYPE_CPLANE
   ami             = data.aws_ami.ubuntu.id
   key_name        = aws_key_pair.mykey.key_name
   security_groups = ["${aws_security_group.k8s-sg.name}"]
