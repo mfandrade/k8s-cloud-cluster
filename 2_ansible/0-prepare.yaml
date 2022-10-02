@@ -1,5 +1,5 @@
 ---
-- name: Machine related prereqs
+- name: Machine related stuff
   hosts: all
   tasks:
     - name: Changing hostname
@@ -13,30 +13,15 @@
           - ca-certificates
           - curl
 
+    - name: Checking if Docker is already installed
+      ansible.builtin.shell:
+        cmd: command -v docker
+      register: docker_installed
+      ignore_errors: yes
+
     - name: Installing Docker
       ansible.builtin.shell:
         cmd: curl -fsSL https://get.docker.com | bash -
+      when: docker_installed is failed
 
-
-- name: Kubernetes prereqs
-  hosts: all
-  tasks:
-    - name: Getting Kubernetes gpg key
-      ansible.builtin.get_url:
-        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-        dest: /usr/share/keyrings/kubernetes-archive-keyring.gpg 
-
-    - name: Adding Kubernetes repository
-      ansible.builtin.lineinfile:
-        line: "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main"
-        path: /etc/apt/sources.list.d/kubernetes.list
-        create: yes
-
-    - name: Installing kube tools
-      ansible.builtin.apt:
-        update_cache: yes
-        pkg:
-        - kubeadm
-        - kubelet
-        - kubectl 
 

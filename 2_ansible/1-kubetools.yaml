@@ -1,0 +1,24 @@
+---
+- name: Kubernetes prerequisites
+  hosts: all
+  tasks:
+    - name: Getting Kubernetes gpg key
+      ansible.builtin.get_url:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        dest: /usr/share/keyrings/kubernetes-archive-keyring.gpg 
+
+    - name: Adding Kubernetes repository
+      ansible.builtin.lineinfile:
+        line: "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main"
+        path: /etc/apt/sources.list.d/kubernetes.list
+        create: yes
+
+    - name: Installing kube tools
+      ansible.builtin.apt:
+        update_cache: yes
+        pkg:
+        - kubeadm
+        - kubelet
+        - kubectl 
+
+
