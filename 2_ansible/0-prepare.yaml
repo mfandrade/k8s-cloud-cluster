@@ -2,6 +2,8 @@
 - name: Machine related stuff
   hosts: all
   tasks:
+    - ansible.builtin.shell: echo -n 'Welcome!\n' > /etc/motd
+
     - name: Setting hostname...
       ansible.builtin.hostname:
         name: "{{ inventory_hostname }}"
@@ -23,5 +25,4 @@
       ansible.builtin.shell:
         cmd: curl -fsSL https://get.docker.com | bash -
       when: docker_installed is failed
-
 

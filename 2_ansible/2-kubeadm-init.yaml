@@ -1,0 +1,28 @@
+---
+- name: Setup Kubernetes cluster "the kubeadm way"
+  hosts: cplanes
+  tasks:
+    - name: Creating systemd config yaml file...
+      ansible.builtin.blockinfile:
+        path: /tmp/kubeadm-config.yaml
+        block: |
+          # kubeadm-config.yaml
+          kind: ClusterConfiguration
+          apiVersion: kubeadm.k8s.io/v1beta3
+          kubernetesVersion: v1.25.2
+          networking:
+            podSubnet: "192.168.0.0/16" # --pod-network-cidr
+          ---
+          kind: KubeletConfiguration
+          apiVersion: kubelet.config.k8s.io/v1beta1
+          cgroupDriver: systemd
+        create: yes
+
+    - name: Let's do it!...
+      ansible.builtin.command: kubeadm init --config /tmp/kubeadm-config.yaml --pod-network-cidr=192.168.0.0/16
+
+    - name: Post-configuring...
+      ansible.builtin.lineinfile:
+        path: /etc/environment
+        line: "KUBECONFIG=/etc/kubernetes/admin.conf"
+

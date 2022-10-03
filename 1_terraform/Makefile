@@ -3,9 +3,8 @@
 init: main.tf vars.tf terraform.tfvars
 	terraform init
 
-plan: .terraform/
-	terraform plan -out terraform.plan
+.terraform/: init
 
-cluster: plan
-	terraform apply terraform.plan
+cluster: .terraform/ 
+	terraform apply -auto-approve
 

@@ -1,0 +1,10 @@
+---
+- name: Cluster join command
+  hosts: cplanes
+  tasks:
+    - name: Printing join command...
+      ansible.builtin.command: kubeadm token create --print-join-command
+      register: output
+    - debug:
+        var: output.stdout_lines
+
