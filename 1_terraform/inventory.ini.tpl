@@ -1,13 +1,10 @@
-[all]
-${connection_strings_cplanes}
-${connection_strings_nodes}
-
 [cplanes]
-${list_master}
+${entry_cplanes}
 
 [nodes]
-${list_node}
+${entry_nodes}
 
 [all:children]
-nodes
 cplanes
+nodes
+

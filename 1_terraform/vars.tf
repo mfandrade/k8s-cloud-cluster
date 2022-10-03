@@ -13,7 +13,7 @@ variable "INSTANCE_TYPE_CPLANE" {
 variable "AMI_IMAGE" {
   type        = string
   description = "AMI ID of your desired image."
-  default     = "ami-09a41e26df464c548"  # Debian 11 Bullseye
+  default     = "ami-09a41e26df464c548" # Debian 11 Bullseye
 }
 
 variable "NUM_OF_NODES" {
@@ -36,4 +36,10 @@ variable "PROJECT" {
 variable "OWNER" {
   type        = string
   description = "The responsible for the instance."
+}
+
+variable "INVENTORY_FILE" {
+  type        = string
+  description = "Relative path of inventory file for Ansible."
+  default     = "../2_ansible/hosts.ini"
 }
