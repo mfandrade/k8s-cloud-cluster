@@ -8,3 +8,8 @@
 all:
 	make -C 1_terraform/
 	make -C 2_ansible/
+
+destroy:
+	cd 2_ansible/ && rm -f hosts.ini 2>/dev/null
+	cd 1_terraform/ && terraform destroy -auto-approve
+	
