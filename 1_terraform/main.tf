@@ -5,6 +5,14 @@ terraform {
       source  = "hashicorp/aws"
       version = "4.33.0"
     }
+    null = {
+      source = "hashicorp/null"
+      version = "3.1.1"
+    }
+    template = {
+      source = "hashicorp/template"
+      version = "2.2.0"
+    }
   }
   backend "s3" {
     region  = "us-east-1"
