@@ -2,24 +2,24 @@
 - name: Machine related stuff
   hosts: all
   tasks:
-    - name: Changing hostname
-      ansible.builtin.shell:
-        cmd: echo "Changing hostname"
+    - name: Setting hostname...
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
 
-    - name: Fundamental packages
+    - name: Ensuring fundamental packages does exist...
       ansible.builtin.apt:
         pkg:
           - apt-transport-https
           - ca-certificates
           - curl
 
-    - name: Checking if Docker is already installed
+    - name: Checking if Docker is already installed...
       ansible.builtin.shell:
         cmd: command -v docker
       register: docker_installed
       ignore_errors: yes
 
-    - name: Installing Docker
+    - name: Installing Docker...
       ansible.builtin.shell:
         cmd: curl -fsSL https://get.docker.com | bash -
       when: docker_installed is failed
