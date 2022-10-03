@@ -24,6 +24,7 @@
       ansible.builtin.shell: |
         rm /etc/containerd/config.toml
         systemctl restart containerd
+        sysctl --system
 
     - name: Creating systemd config yaml file...
       ansible.builtin.blockinfile:
