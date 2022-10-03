@@ -1,0 +1,8 @@
+task:
+  image: docker
+  services:
+    - docker:dind
+  stage: build
+  script:
+    - make
+
