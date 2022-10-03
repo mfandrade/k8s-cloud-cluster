@@ -1,10 +1,27 @@
 ---
-- name: Meu primeiro playbook
+- name: Machine related stuff
   hosts: all
   tasks:
-    - name: Checa o hostname
+    - name: Changing hostname
       ansible.builtin.shell:
-        cmd: hostname
-    - name: Diz ou alô aí pa nóis
-      ansible.builtin.debug:
-        msg: Alo, mundo!
+        cmd: echo "Changing hostname"
+
+    - name: Fundamental packages
+      ansible.builtin.apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+
+    - name: Checking if Docker is already installed
+      ansible.builtin.shell:
+        cmd: command -v docker
+      register: docker_installed
+      ignore_errors: yes
+
+    - name: Installing Docker
+      ansible.builtin.shell:
+        cmd: curl -fsSL https://get.docker.com | bash -
+      when: docker_installed is failed
+
+
