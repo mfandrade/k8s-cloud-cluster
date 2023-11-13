@@ -14,7 +14,7 @@ validation.
 # TL;DR
 
 ```
-$ cd terraform-ansible-aws
+$ cd k8s-cloud-cluster
 $ make
 ```
 
